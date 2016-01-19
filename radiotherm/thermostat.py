@@ -237,7 +237,15 @@ class CT30v192(CT30):
     MODEL = 'CT30 V1.92'
 
 
-class CT50v109(CT30):
+class CT50(CT30):
+    """
+    Defines API features that differ for this specific model from
+    CommonThermostat
+    """
+    MODEL = 'CT50'
+
+
+class CT50v109(CT50):
     """
     Defines API features that differ for this specific model from
     CommonThermostat
@@ -245,7 +253,7 @@ class CT50v109(CT30):
     MODEL = 'CT50 V1.09'
 
 
-class CT50v188(CT30):
+class CT50v188(CT50):
     """
     Defines API features that differ for this specific model from
     CommonThermostat
@@ -253,13 +261,9 @@ class CT50v188(CT30):
     MODEL = 'CT50 V1.88'
 
 
-class CT50v194(CT30):
+class CT50v194(CT50):
     """
     Defines API features that differ for this specific model from
     CommonThermostat
     """
     MODEL = 'CT50 V1.94'
-
-
-class CT80RevB2v103(CT80RevB):
-    MODEL = 'CT80 Rev B2 V1.03'
