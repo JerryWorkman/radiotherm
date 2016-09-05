@@ -1,8 +1,9 @@
-from .thermostat import Thermostat, CommonThermostat, CT30v192, CT50v109, CT50v188, CT50v194, CT80RevB2v103
+from .thermostat import Thermostat, CommonThermostat, CT30v192, CT50v109, CT50v188, CT50v194, CT30, CT50, CT80, CT80RevB
 from . import discover
 from . import fields
 
-THERMOSTATS = (CT30v192, CT50v109, CT50v188, CT50v194, CT80RevB2v103,) 
+#Order specific models first
+THERMOSTATS = (CT30v192, CT50v109, CT50v188, CT50v194, CT80RevB, CT80, CT50, CT30)
 
 def get_thermostat_class(model):
     """
@@ -13,8 +14,13 @@ def get_thermostat_class(model):
     :returns:       subclass of CommonThermostat, or None if there is not a
                     matching subclass found in THERMOSTATS.
     """
+    #Look for exact matches first
     for thermostat in THERMOSTATS:
         if issubclass(thermostat, Thermostat) and thermostat.MODEL == model:
+            return thermostat
+    #then partial matches
+    for thermostat in THERMOSTATS:
+        if issubclass(thermostat, Thermostat) and model.startswith(thermostat.MODEL):
             return thermostat
 
 def get_thermostat(host_address=None):
