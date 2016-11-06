@@ -18,6 +18,7 @@ def get_thermostat_class(model):
     for thermostat in THERMOSTATS:
         if issubclass(thermostat, Thermostat) and thermostat.MODEL == model:
             return thermostat
+        
     #then partial matches
     for thermostat in THERMOSTATS:
         if issubclass(thermostat, Thermostat) and model.startswith(thermostat.MODEL):
